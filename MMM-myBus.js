@@ -27,8 +27,7 @@ Module.register("MMM-MyBus", {
   getData: async function () {
     try {
       const response = await fetch(this.url);
-      const data = await response.json();            
-      this.letzterPegel1 = data[data.length-1]['value'];
+      const data = await response.json();                  
       console.log(data);
     }
     catch (error) {
