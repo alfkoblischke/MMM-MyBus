@@ -1,4 +1,4 @@
-Module.register("MMM-myBus", {
+Module.register("MMM-MyBus", {
 
   defaults: {
     updateInterval: 600000,
