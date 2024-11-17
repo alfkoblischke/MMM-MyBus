@@ -1,7 +1,7 @@
-Module.register("MMM-Template", {
+Module.register("MMM-MyBus", {
 
   defaults: {
-    exampleContent: ""
+    exampleContent: "Hurra"
   },
 
   /**
