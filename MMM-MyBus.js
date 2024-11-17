@@ -1,4 +1,4 @@
-Module.register("MMM-MyBus", {
+`Module.register("MMM-MyBus", {
 
   defaults: {
     updateInterval: 600000,
@@ -17,7 +17,7 @@ Module.register("MMM-MyBus", {
     this.templateContent = this.config.exampleContent
 
     this.loaded = false;    
-    this.url = `https://www.vrs.de/index.php?eID=tx_vrsinfo_departuremonitor&i=${Object.keys(this.config.departuremonitor)}
+    this.url = `https://www.vrs.de/index.php?eID=tx_vrsinfo_departuremonitor&i=${Object.keys(this.config.departuremonitor)}`;
     this.getData();
     setInterval(() => {
       this.getData();      
