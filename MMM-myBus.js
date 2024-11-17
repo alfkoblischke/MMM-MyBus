@@ -2,6 +2,7 @@ Module.register("MMM-myBus", {
 
   defaults: {
     updateInterval: 600000,
+    departuremonitor: "7ceb8ad4ddbb52c8fb175944b4933e39",
     exampleContent: "Hurra"
   },
 
@@ -15,23 +16,25 @@ Module.register("MMM-myBus", {
   start() {
     this.templateContent = this.config.exampleContent
 
-    // set timeout for next random text
-    setInterval(() => this.addRandomText(), 3000)
+    this.loaded = false;    
+    this.url = `https://www.vrs.de/index.php?eID=tx_vrsinfo_departuremonitor&i=${Object.keys(this.config.departuremonitor)}
+    this.getData();
+    setInterval(() => {
+      this.getData();      
+    }, this.config.updateInterval);   
   },
 
-  /**
-   * Handle notifications received by the node helper.
-   * So we can communicate between the node helper and the module.
-   *
-   * @param {string} notification - The notification identifier.
-   * @param {any} payload - The payload data`returned by the node helper.
-   */
-  socketNotificationReceived: function (notification, payload) {
-    if (notification === "EXAMPLE_NOTIFICATION") {
-      this.templateContent = `${this.config.exampleContent} ${payload.text}`
-      this.updateDom()
+  getData: async function () {
+    try {
+      const response = await fetch(this.url);
+      const data = await response.json();            
+      this.letzterPegel1 = data[data.length-1]['value'];
+      console.log(data);
     }
+    catch (error) {
+      Log.error(`Fehler beim Abrufen der Daten von VRS API: ${error}`);
   },
+
 
   /**
    * Render the page we're on.
@@ -41,22 +44,5 @@ Module.register("MMM-myBus", {
     wrapper.innerHTML = `<b>Title</b><br />${this.templateContent}`
 
     return wrapper
-  },
-
-  addRandomText() {
-    this.sendSocketNotification("GET_RANDOM_TEXT", { amountCharacters: 15 })
-  },
-
-  /**
-   * This is the place to receive notifications from other modules or the system.
-   *
-   * @param {string} notification The notification ID, it is preferred that it prefixes your module name
-   * @param {number} payload the payload type.
-   */
-  notificationReceived(notification, payload) {
-    if (notification === "TEMPLATE_RANDOM_TEXT") {
-      this.templateContent = `${this.config.exampleContent} ${payload}`
-      this.updateDom()
-    }
-  }
+  },  
 })
