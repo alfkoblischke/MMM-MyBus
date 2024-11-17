@@ -22,6 +22,7 @@ Module.register("MMM-MyBus", {
   },
 
   getData: async function () {
+    console.log(this.url);
     try { 
       const response = await fetch(this.url);
       const data = await response.json();                  
