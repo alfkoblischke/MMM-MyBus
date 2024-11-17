@@ -25,7 +25,7 @@ Module.register("MMM-MyBus", {
     try { 
       const response = await fetch(this.url);
       const data = await response.json();                  
-      if(data["updated"] <> Null") {               
+      if(data["updated"] <> Null) {               
         console.log(data);
         this.myStart = data.resourceSets[0]["resources"][0].routeLegs[0]["startLocation"]["address"].formattedAddress;        
         this.myDestination = data.resourceSets[0]["resources"][0].routeLegs[0]["endLocation"]["address"].formattedAddress;          
