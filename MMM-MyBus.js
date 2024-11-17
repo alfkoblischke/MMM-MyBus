@@ -32,8 +32,8 @@ Module.register("MMM-MyBus", {
     }
     catch (error) {
       Log.error(`Fehler beim Abrufen der Daten von VRS API: ${error}`);
-  },
-
+    }
+ },
 
   /**
    * Render the page we're on.
