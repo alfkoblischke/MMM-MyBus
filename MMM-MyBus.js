@@ -27,15 +27,11 @@ Module.register("MMM-MyBus", {
       method: "GET",
       redirect: "follow"
     };
-    try { 
+    
        fetch(this.url, requestOptions)
        .then((response) => response.text())
        .then((result) => console.log(result))
-       .then((error) => console.log(error))             
-    }     
-    catch (error) {
-      Log.error(`Fehler beim Abrufen der Daten von Traffic API: ${error}`);
-    }    
+       .then((error) => console.log(error));                 
  },
 
   /**
