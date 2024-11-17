@@ -18,7 +18,7 @@ Module.register("MMM-MyBus", {
 
     this.loaded = false;    
     this.url = `https://www.vrs.de/index.php?eID=tx_vrsinfo_departuremonitor&i=${Object.keys(this.config.departuremonitor)}`;
-    log(this.url);
+    console.log(this.url);
     this.getData();
     setInterval(() => {
       this.getData();      
