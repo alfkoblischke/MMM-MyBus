@@ -1,7 +1,7 @@
 # MMM-myBus
 See the [wiki page](https://github.com/Dennis-Rosenbaum/MMM-Template/wiki) for an in depth overview of how to get started.
 
-# MMM-Template
+# MMM-myBus
 
 ![Example of MMM-Template](./example_1.png)
 
