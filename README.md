@@ -15,7 +15,7 @@ In your terminal, go to your [MagicMirror²][mm] Module folder and clone MMM-Tem
 
 ```bash
 cd ~/MagicMirror/modules
-git clone [GitHub url]
+git clone https://github.com/alfkoblischke/myBus
 ```
 
 ### Update
