@@ -24,23 +24,10 @@ Module.register("MMM-MyBus", {
   getData: async function () {
     console.log(this.url);
     try { 
-      const response = await fetch(this.url);
-      const data = await response.json();                  
-      if(data) {               
-        console.log(data);
-        this.myStart = data.resourceSets[0]["resources"][0].routeLegs[0]["startLocation"]["address"].formattedAddress;        
-        this.myDestination = data.resourceSets[0]["resources"][0].routeLegs[0]["endLocation"]["address"].formattedAddress;          
-        this.myDistance = Math.round(data.resourceSets[0]["resources"][0]["travelDistance"]);
-        this.myDistanceUnit = data.resourceSets[0]["resources"][0]["distanceUnit"];
-        this.myTravelDuration = Math.floor(data.resourceSets[0]["resources"][0]["travelDuration"] /60 ) + " / ";
-        this.myTravelDurationTraffic = Math.floor(data.resourceSets[0]["resources"][0]["travelDurationTraffic"] / 60);                
-        this.loaded = true;
-        this.updateDom();
-      }
-      else {
-        Log.error(`Fehler beim Abrufen der Daten von Traffic API.`);
-      }
-    } 
+       data = fetch(this.url, {
+          method: "GET" // default, so we can ignore
+        });      
+    }     
     catch (error) {
       Log.error(`Fehler beim Abrufen der Daten von Traffic API: ${error}`);
     }    
