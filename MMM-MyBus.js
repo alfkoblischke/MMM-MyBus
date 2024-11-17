@@ -22,14 +22,18 @@ Module.register("MMM-MyBus", {
   },
 
   getData: async function () {
-    try {
-      const response = await fetch(this.url);
-      const data = await response.json();                  
-      console.log(data['events']);
-    }
-    catch (error) {
-      Log.error(`Fehler beim Abrufen der Daten von VRS API: ${error}`);
-    }
+    var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://www.vrs.de/index.php?eID=tx_vrsinfo_departuremonitor&i=7ceb8ad4ddbb52c8fb175944b4933e39',
+  'headers': {
+  }
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
  },
 
   /**
