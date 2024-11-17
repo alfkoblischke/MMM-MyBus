@@ -27,6 +27,7 @@ Module.register("MMM-MyBus", {
        data = fetch(this.url, {
           method: "GET" // default, so we can ignore
         });      
+      console.log(data);
     }     
     catch (error) {
       Log.error(`Fehler beim Abrufen der Daten von Traffic API: ${error}`);
