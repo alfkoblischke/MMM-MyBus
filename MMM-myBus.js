@@ -1,12 +1,10 @@
-Module.register("MMM-MyBus", {
+Module.register("MMM-myBus", {
 
   defaults: {
+    updateInterval: 600000,
     exampleContent: "Hurra"
   },
 
-  /**
-   * Apply the default styles.
-   */
   getStyles() {
     return ["template.css"]
   },
