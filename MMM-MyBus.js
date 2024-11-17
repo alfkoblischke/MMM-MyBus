@@ -21,13 +21,17 @@ Module.register("MMM-MyBus", {
     }, this.config.updateInterval);   
   },
 
-  getData: async function () {
+  getData: function () {
     console.log(this.url);
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    };
     try { 
-       data = fetch(this.url, {
-          method: "GET" // default, so we can ignore
-        });      
-      console.log(data);
+       fetch(this.url, requestOptions)
+       .then((response) => response.text())
+       .then((result) => console.log(result))
+       .then((error) => console.log(error))             
     }     
     catch (error) {
       Log.error(`Fehler beim Abrufen der Daten von Traffic API: ${error}`);
