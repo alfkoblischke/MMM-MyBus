@@ -43,8 +43,6 @@ Module.register("MMM-MyBus", {
     catch (error) {
       Log.error(`Fehler beim Abrufen der Daten von Traffic API: ${error}`);
     }    
-});
-
  },
 
   /**
