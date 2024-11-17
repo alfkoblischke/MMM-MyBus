@@ -9,16 +9,12 @@ Module.register("MMM-MyBus", {
   getStyles() {
     return ["template.css"]
   },
-
-  /**
-   * Pseudo-constructor for our module. Initialize stuff here.
-   */
+ 
   start() {
     this.templateContent = this.config.exampleContent
 
     this.loaded = false;    
-    this.url = `https://www.vrs.de/index.php?eID=tx_vrsinfo_departuremonitor&i=${this.config.departuremonitor}`;
-    console.log(this.url);
+    this.url = `https://www.vrs.de/index.php?eID=tx_vrsinfo_departuremonitor&i=${this.config.departuremonitor}`;    
     this.getData();
     setInterval(() => {
       this.getData();      
@@ -29,7 +25,7 @@ Module.register("MMM-MyBus", {
     try {
       const response = await fetch(this.url);
       const data = await response.json();                  
-      console.log(data);
+      console.log(data['events']);
     }
     catch (error) {
       Log.error(`Fehler beim Abrufen der Daten von VRS API: ${error}`);
@@ -44,5 +40,5 @@ Module.register("MMM-MyBus", {
     wrapper.innerHTML = `<b>Title</b><br />${this.templateContent}`
 
     return wrapper
-  },  
+  }
 })
