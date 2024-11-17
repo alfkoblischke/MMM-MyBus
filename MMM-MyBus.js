@@ -22,16 +22,27 @@ Module.register("MMM-MyBus", {
   },
 
   getData: async function () {
-    var request = require('request');
-var options = {
-  'method': 'GET',
-  'url': 'https://www.vrs.de/index.php?eID=tx_vrsinfo_departuremonitor&i=7ceb8ad4ddbb52c8fb175944b4933e39',
-  'headers': {
-  }
-};
-request(options, function (error, response) {
-  if (error) throw new Error(error);
-  console.log(response.body);
+    try { 
+      const response = await fetch(this.url);
+      const data = await response.json();                  
+      if(data["updated"] <> Null") {               
+        console.log(data);
+        this.myStart = data.resourceSets[0]["resources"][0].routeLegs[0]["startLocation"]["address"].formattedAddress;        
+        this.myDestination = data.resourceSets[0]["resources"][0].routeLegs[0]["endLocation"]["address"].formattedAddress;          
+        this.myDistance = Math.round(data.resourceSets[0]["resources"][0]["travelDistance"]);
+        this.myDistanceUnit = data.resourceSets[0]["resources"][0]["distanceUnit"];
+        this.myTravelDuration = Math.floor(data.resourceSets[0]["resources"][0]["travelDuration"] /60 ) + " / ";
+        this.myTravelDurationTraffic = Math.floor(data.resourceSets[0]["resources"][0]["travelDurationTraffic"] / 60);                
+        this.loaded = true;
+        this.updateDom();
+      }
+      else {
+        Log.error(`Fehler beim Abrufen der Daten von Traffic API.`);
+      }
+    } 
+    catch (error) {
+      Log.error(`Fehler beim Abrufen der Daten von Traffic API: ${error}`);
+    }    
 });
 
  },
