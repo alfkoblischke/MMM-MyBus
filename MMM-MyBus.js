@@ -106,7 +106,7 @@ Module.register("MMM-MyBus", {
    */
   getDom() {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>Abfahrten Linie</b><br />${this.station}`
+    wrapper.innerHTML = `<b>Abfahrten Linie</b><br />${this.exampleContent}`
 
     return wrapper
   }
