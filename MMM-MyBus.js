@@ -107,7 +107,8 @@ Module.register("MMM-MyBus", {
    */
   getDom() {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = '<b>Abfahrten ' + this.updateTime + ' Linie</b><br />${this.exampleContent}'
+    wrapper.innerHTML = '<b>Abfahrten ' + this.updateTime + ' Linie</b><br />${this.exampleContent}';
+    wrapper.innerHTML .= this.convertJSONToTable(events); 
 
     return wrapper
   }
