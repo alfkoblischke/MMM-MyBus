@@ -18,7 +18,7 @@ Module.register("MMM-MyBus", {
         .then((data) => {
             let updateTime = data['updated'];
             let events = data['events'];
-            let station = data['events'][0]['stopPoint']['name'];
+            station = data['events'][0]['stopPoint']['name'];
             console.log(station);
             convertJSONToTable(events)
             console.log('Data received:', events);
@@ -60,7 +60,7 @@ Module.register("MMM-MyBus", {
    */
   getDom() {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>Abfahrten Linie</b><br />${station}`
+    wrapper.innerHTML = `<b>Abfahrten Linie</b><br />${this.station}`
 
     return wrapper
   }
