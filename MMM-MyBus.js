@@ -98,7 +98,7 @@ Module.register("MMM-MyBus", {
 
     table += '</tbody></table>';
    return table;
-}
+},
 
   
 
