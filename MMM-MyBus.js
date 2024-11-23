@@ -12,7 +12,6 @@ Module.register("MMM-MyBus", {
  
   start() {
     this.templateContent = this.config.exampleContent
-
     this.loaded = false;    
     this.url = `https://www.vrs.de/index.php?eID=tx_vrsinfo_departuremonitor&i=${this.config.departuremonitor}`;    
     this.getData();
@@ -22,16 +21,27 @@ Module.register("MMM-MyBus", {
   },
 
   getData: function () {
-    console.log(this.url);
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const requestOptions = {
       method: "GET",
-      redirect: "follow"
+      redirect: "follow",
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0"
+      }
     };
-    
-       fetch(this.url, requestOptions)
-       .then((response) => response.text())
-       .then((result) => console.log(result))
-       .then((error) => console.log(error));                 
+
+    try {
+        const response = await fetch(proxyUrl + this.url, requestOptions);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const result = await response.json();
+        return result;
+    }
+    catch (error) {
+        console.log('Fetch error: ', error);
+        throw error;
+    }                
  },
 
   /**
