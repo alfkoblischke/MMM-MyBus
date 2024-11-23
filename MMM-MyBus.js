@@ -20,7 +20,7 @@ Module.register("MMM-MyBus", {
     }, this.config.updateInterval);   
   },
 
-  getData: function () {
+  getData: async function () {
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const requestOptions = {
       method: "GET",
