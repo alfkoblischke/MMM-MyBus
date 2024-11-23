@@ -14,7 +14,18 @@ Module.register("MMM-MyBus", {
     this.templateContent = this.config.exampleContent
     this.loaded = false;    
     this.url = `https://www.vrs.de/index.php?eID=tx_vrsinfo_departuremonitor&i=${this.config.departuremonitor}`;    
-    this.getData();
+    this.getData()      
+        .then((data) => {
+            let updateTime = data['updated'];
+            let events = data['events'];
+            let station = data['events'][0]['stopPoint']['name'];
+            console.log(station);
+            convertJSONToTable(events)
+            console.log('Data received:', events);
+        })
+        .catch((error) => {
+            console.error('Eror: ', error);
+    });
     setInterval(() => {
       this.getData();      
     }, this.config.updateInterval);   
@@ -49,7 +60,7 @@ Module.register("MMM-MyBus", {
    */
   getDom() {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>Title</b><br />${this.templateContent}`
+    wrapper.innerHTML = `<b>Abfahrten Linie</b><br />${this.templateContent}`
 
     return wrapper
   }
