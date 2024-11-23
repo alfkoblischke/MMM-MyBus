@@ -20,8 +20,7 @@ Module.register("MMM-MyBus", {
             let events = data['events'];
             station = data['events'][0]['stopPoint']['name'];
             console.log(station);
-            console.log(this.convertJSONToTable(events));
-            console.log('Data received:', events);
+            this.convertJSONToTable(events);            
         })
         .catch((error) => {
             console.error('Eror: ', error);
