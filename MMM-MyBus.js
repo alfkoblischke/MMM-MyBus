@@ -20,7 +20,7 @@ Module.register("MMM-MyBus", {
             let events = data['events'];
             station = data['events'][0]['stopPoint']['name'];
             console.log(station);
-            convertJSONToTable(events)
+            console.log(convertJSONToTable(events));
             console.log('Data received:', events);
         })
         .catch((error) => {
@@ -54,6 +54,53 @@ Module.register("MMM-MyBus", {
         throw error;
     }                
  },
+
+ convertJSONToTable function(jsonData) {
+    table = '<table><thead><tr>';
+        
+    table += '</tr></thead><tbody>';
+
+    table += '<tr>';
+    table += '<td>';
+    table += 'Geplant';
+    table += '</td>';
+    table += '<td>';
+    table += 'Erwartet';
+    table += '</td>';
+    table += '<td>';
+    table += 'Linie';
+    table += '</td>';
+    table += '<td>';
+    table += 'Richtung';
+    table += '</td>';
+    table += '</tr>';
+
+    jsonData.forEach(row => {        
+        estimated = row['departure']['estimate'];
+        if (typeof (estimated) == "undefined") {
+            estimated = ''
+        }        
+        table += '<tr>';
+        table += '<td>';
+        table += row['departure']['timetable'];
+        table += '</td>';
+        table += '<td>';
+        table += estimated;
+        table += '</td>';
+        table += '<td>';
+        table += row['line']['product'] + ' ' + row['line']['number'];
+        table += '</td>';
+        table += '<td>';
+        table += row['line']['direction'];
+        table += '</td>';
+        table += '</tr>';
+    });
+
+    table += '</tbody></table>';
+   return table;
+}
+
+  
 
   /**
    * Render the page we're on.
