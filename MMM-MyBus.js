@@ -17,7 +17,7 @@ Module.register("MMM-MyBus", {
     this.getData()      
         .then((data) => {
             this.updateTime = data['updated'];
-            let events = data['events'];
+            events = data['events'];
             station = data['events'][0]['stopPoint']['name'];
             console.log(station);
             this.convertJSONToTable(events);            
