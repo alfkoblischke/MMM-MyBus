@@ -16,7 +16,7 @@ Module.register("MMM-MyBus", {
     this.url = `https://www.vrs.de/index.php?eID=tx_vrsinfo_departuremonitor&i=${this.config.departuremonitor}`;    
     this.getData()      
         .then((data) => {
-            let updateTime = data['updated'];
+            this.updateTime = data['updated'];
             let events = data['events'];
             station = data['events'][0]['stopPoint']['name'];
             console.log(station);
@@ -106,7 +106,7 @@ Module.register("MMM-MyBus", {
    */
   getDom() {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>Abfahrten Linie</b><br />${this.exampleContent}`
+    wrapper.innerHTML = `<b>Abfahrten ${this.updateTime}Linie</b><br />${this.exampleContent}`
 
     return wrapper
   }
