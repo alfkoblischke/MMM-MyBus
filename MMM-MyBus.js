@@ -55,7 +55,7 @@ Module.register("MMM-MyBus", {
     }                
  },
 
- convertJSONToTable function(jsonData) {
+ convertJSONToTable: function(jsonData) {
     table = '<table><thead><tr>';
         
     table += '</tr></thead><tbody>';
